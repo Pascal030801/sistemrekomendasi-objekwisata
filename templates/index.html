@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Sistem Rekomendasi Objek Wisata Kalimantan Barat</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" 
+          integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <!-- Custom CSS -->
+    <link rel="icon" href="static/icon.png">
+    <link rel="stylesheet" href="static/main.css" type="text/css">
+    <link rel="stylesheet"  href="static/style.css" type="text/css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tarekraafat/autocomplete.js@7.2.0/dist/css/autoComplete.min.css">
+
+</head>
+
+<style>
+  body {
+    background-image: url("/static/background2.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover; 
+  }
+
+  .layout{
+    margin-top: 13vmax;
+  }
+
+  .description{
+    color: rgb(234, 230, 226);
+  }
+
+  .button-28 {
+  appearance: none;
+  background-color: #FF4760;
+  border: 4px solid rgba(61, 14, 14, 0.25);
+  border-radius: 15px;
+  box-sizing: border-box;
+  color: white;
+  cursor: pointer;
+  display: inline-block;
+  font-family: Roobert,-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+  /* font-size: 16px; */
+  /* font-weight: 600; */
+  line-height: 0;
+  margin-top: 15px;
+  min-height: 60px;
+  min-width: 0px;
+  outline: none;
+  padding: 16px 24px;
+  text-align: center;
+  text-decoration: none;
+  transition: all 300ms cubic-bezier(.23, 1, 0.32, 1);
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  /* width: 15%; */
+  will-change: transform;
+}
+
+.button-28:disabled {
+  pointer-events: none;
+}
+
+.button-28:hover {
+  background-color: #ff475fc8;
+  box-shadow: rgba(18, 18, 18, 0.25) 0 8px 15px;
+  transform: translateY(-2px);
+}
+
+.button-28:active {
+  box-shadow: none;
+  transform: translateY(0);
+
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Raleway;
+  background-color: #202125;
+
+  animation: fadeInAnimation ease 5s;
+            animation-iteration-count: 1;
+            animation-fill-mode: forwards;
+}
+
+@keyframes fadeInAnimation {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+      
+.heading {
+    text-align: center;
+    font-size: 2.0em;
+    letter-spacing: 1px;
+    padding: 0px;
+    color: white;
+    margin-top: 5lvw;
+}
+
+.gallery-image {
+  padding: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.gallery-image img {
+  height: 250px;
+  width: 350px;
+  transform: scale(1.0);
+  transition: transform 0.4s ease;
+}
+
+.img-box {
+  box-sizing: content-box;
+  margin: 10px;
+  height: 250px;
+  width: 350px;
+  overflow: hidden;
+  display: inline-block;
+  color: white;
+  position: relative;
+  background-color: white;
+  border-radius: 5px;
+}
+
+.caption {
+  position: absolute;
+  bottom: 5px;
+  left: 20px;
+  opacity: 0.0;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.transparent-box {
+  height: 250px;
+  width: 350px;
+  background-color:rgba(0, 0, 0, 0);
+  position: absolute;
+  top: 0;
+  left: 0;
+  transition: background-color 0.3s ease;
+}
+
+.img-box:hover img { 
+  transform: scale(1.1);
+}
+
+.img-box:hover .transparent-box {
+  background-color:rgba(0, 0, 0, 0.5);
+}
+
+.img-box:hover .caption {
+  transform: translateY(-20px);
+  opacity: 1.0;
+}
+
+.img-box:hover {
+  cursor: pointer;
+}
+
+.caption > p:nth-child(2) {
+  font-size: 0.8em;
+}
+
+.opacity-low {
+  opacity: 0.5;
+}
+.otto{
+  color: white;
+  text-shadow: 0 1px 0 #ccc,
+               0 2px 0 #c9c9c9,
+               0 3px 0 #bbb,
+               0 4px 0 #b9b9b9,
+               0 5px 0 #aaa,
+               0 6px 1px rgba(0,0,0,.1),
+               0 0 5px rgba(0,0,0,.1),
+               0 1px 3px rgba(0,0,0,.3),
+               0 3px 5px rgba(0,0,0,.2),
+               0 5px 10px rgba(0,0,0,.25),
+               0 10px 10px rgba(0,0,0,.2),
+               0 20px 20px rgba(0,0,0,.15);
+}
+
+.otto1{
+  color: white;
+  text-shadow: 0 1px 0 #ccc,
+               0 2px 0 #c9c9c9,
+               0 6px 1px rgba(0,0,0,.1),
+               0 0 5px rgba(0,0,0,.1),
+               0 1px 3px rgba(0,0,0,.3),
+               0 3px 5px rgba(0,0,0,.2),
+               0 5px 10px rgba(0,0,0,.25),
+               0 10px 10px rgba(0,0,0,.2),
+               0 20px 20px rgba(0,0,0,.15);
+
+  
+}
+
+span {
+  display: inline-block;
+  color: whitesmoke;
+  padding: 4px 8px;
+  margin: 2px;
+  font-size: small;
+}
+
+@media (max-width: 700px) {
+  .button-28{
+    min-height: 20px;
+    min-width: 0px;
+  }
+  #objekwisata{
+    display: none;
+  }
+
+  span{
+  width: 60%;
+  font-size: 10px;
+  }
+
+  .description{
+    font-size: 12px;
+  }
+
+  #demo{
+    display: none;
+  }
+  .layout{
+    margin-top: 15vmax;
+  }
+  #logo{
+    width: 90px ;
+    height: 45px;
+  }
+ /* .img-box:click img { 
+  transform: scale(1.1);
+}
+
+.img-box:click .transparent-box {
+  background-color:rgba(0, 0, 0, 0.5);
+} */
+
+.caption {
+  /* transform: translateY(-20px); */
+  opacity: 1.0;
+}
+.transparent-box {
+  background-color:rgba(0, 0, 0, 0.5);
+}
+
+/* .img-box:click {
+  cursor: none;
+} */
+
+}
+
+
+</style>
+
+<body>
+
+  {% include 'nav.html' %}
+  {% block content %}
+  {% endblock %}
+  
+  <center>
+    
+    <div class="main">
+      <div class="layout">
+      <h1 class="otto1" align="center">
+        Sistem Rekomendasi Objek Wisata Kalimantan Barat
+      </h1>
+        <div class='description'>
+          <p>Menggunakan Metode Content Based dengan Algoritma TF-IDF Vector Space Model</p>
+        </div>
+      </center>
+
+      <form action="/recommend" method="post" style="text-align: center;">
+        <div class="form-group shadow-textarea">
+          <input type="text" name="keyword" class="movie form-control" id="autoComplete"
+           autocomplete="off" placeholder="Masukan Keyword" 
+           style="background-color:#ffffff;border-color:#000000c1;width: 60%;
+           color: #181818; border-radius: 20px;" required="required" />
+           <div class="form-group" style="margin-top: 5px;">
+            <span>Masukan keyword sesuai tempat wisata yang anda harapkan. Misal : Rumah Adat, Bukit Temenong</span>
+          </div>
+        </div> 
+        <div class="form-group" style="text-align: center;">
+          <input class="button-28" role="button" type="submit" value="Cari">
+            <br>
+        </div>
+      </form>
+    </div>
+
+  <div id="objekwisata">
+    <div style="margin-top: 18%; background: linear-gradient(180deg, rgba(11, 29, 38, 0) 0%, #0B1D26 61.38%);">
+      <br>
+      <h1 class="otto" align="center">
+        <b>- Objek Wisata Favorit -</b>
+      </h1>
+      <br>
+   
+      <div class="gallery-image">
+        <div class="img-box">
+          <img src="static/danausentarum.jpg" alt="" />
+          <div class="transparent-box">
+            <div class="caption">
+              <p>Taman Nasional Danau Sentarum</p>
+              <p class="opacity-low">Kapuas Hulu
+              </p>
+            </div>
+          </div> 
+        </div>
+        <div class="img-box">
+          <img src="static/bukitkelam.jpg" alt="" />
+          <div class="transparent-box">
+            <div class="caption">
+              <p>Bukit Kelam</p>
+              <p class="opacity-low">Sintang</p>
+            </div>
+          </div>
+        </div>
+        <div class="img-box">
+          <img src="static/riamdait.jpg" alt="" />
+          <div class="transparent-box">
+            <div class="caption">
+              <p>Air Terjun Riam Dait</p>
+              <p class="opacity-low">Landak</p>
+            </div>
+          </div>
+        </div>
+        <div class="img-box">
+          <img src="static/tamannasionalgunungpalung.jpg" alt="" />
+          <div class="transparent-box">
+            <div class="caption">
+              <p>Taman Nasional Gunung Palung</p>
+              <p class="opacity-low">Kayong Utara</p>
+            </div>
+          </div> 
+        </div>
+        <div class="img-box">
+          <img src="static/tamannasionalbetungkerihun.jpg" alt="" />
+          <div class="transparent-box">
+            <div class="caption">
+              <p>Taman Nasional Betung Kerihun</p>
+              <p class="opacity-low">Kapuas Hulu</p>
+            </div>
+          </div> 
+        </div>
+        <div class="img-box">
+          <img src="static/keratonkadriyahpontianak.jpg" alt="" />
+          <div class="transparent-box">
+            <div class="caption">
+              <p>Istana Kadriyah</p>
+              <p class="opacity-low">Pontianak</p>
+            </div>
+          </div> 
+        </div>
+        <div class="img-box">
+          <img src="static/tugudigulis.jpg" alt="" />
+          <div class="transparent-box">
+            <div class="caption">
+              <p>Tugu Digulis</p>
+              <p class="opacity-low">Pontianak</p>
+            </div>
+          </div>
+        </div>
+         
+        <div class="img-box">
+            <img src="static/tamanalunkapuas.jpg" alt="" />
+            <div class="transparent-box">
+              <div class="caption">
+                <p>Tugu Alun-Alun Kapuas</p>
+                <p class="opacity-low">Pontianak</p>
+              </div>
+            </div>
+        </div> 
+        <div class="img-box">
+              <img src="static/rumahradakngpontianak.jpg" alt="" />
+              <div class="transparent-box">
+                <div class="caption">
+                  <p>Rumah Betang Radakng</p>
+                  <p class="opacity-low">Pontianak</p>
+                </div>
+              </div> 
+        </div>
+        <div class="img-box">
+          <img src="static/pulaurandayan.jpg" alt="" />
+          <div class="transparent-box">
+            <div class="caption">
+              <p>Pulau Randayan</p>
+              <p class="opacity-low">Bengkayang</p>
+            </div>
+          </div> 
+        </div>
+        <div class="img-box">
+          <img src="static/pulaulemukutan.jpg" alt="" />
+          <div class="transparent-box">
+            <div class="caption">
+              <p>Pulau Lemukutan</p>
+              <p class="opacity-low">Bengkayang</p>
+            </div>
+          </div> 
+        </div>
+        <div class="img-box">
+          <img src="static/pantaibatunenek.jpg" alt="" />
+          <div class="transparent-box">
+            <div class="caption">
+              <p>Pantai Temajuk</p>
+              <p class="opacity-low">Sambas</p>
+            </div>
+          </div> 
+        </div>
+      </div>
+      <br>
+      <div align="center" style="color: white;">
+        Pascalis Pradani Sindhunata (195314054)
+      </div>
+      <br>
+    </div>
+  </div>
+
+  <script>
+    function DaftarObjek() {
+      var x = document.getElementById("objekwisata");
+      if (x.style.display === "none") {
+        x.style.display = "block";
+      } else {
+        x.style.display = "block";
+      }
+    }
+  </script>
+
+</body>
+</html>

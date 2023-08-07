@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Tidak Menemukan Rekomendasi</Title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css'>
+<style>
+
+/* Error 404 page*/
+@import 'https://fonts.googleapis.com/css2?family=Azeret+Mono:wght@500&family=Vollkorn';
+
+html {
+  min-height: 100%;
+}
+
+body {
+    background-image: url("/static/error.png");
+    background-size: cover;
+    position: fixed;
+    width: 1440px;
+    height: 1024px;
+}
+
+.terminal {
+  box-sizing: inherit;
+  position: fixed;
+  color: #000;
+  padding: 7rem;
+  text-transform: uppercase;
+}
+
+a {
+  color: #4864d4;
+  text-decoration: none;
+}
+
+@media (max-width: 700px) {
+
+  body {
+    background-image: url("/static/error1.png");
+    background-size: cover;
+    position: fixed;
+    width: 1440px;
+    height: 1024px;
+}
+}
+
+</style>
+</head>
+<body>
+
+<div class="terminal">
+  <h1 style="font-size: 400%;">Maaf</h1>
+  <p class="output">Keyword yang anda cari tidak ditemukan atau tidak ada.</p>
+  <button type="button" class="btn btn-danger" > 
+    <a href="{{ url_for('main') }}" style="padding: 10px;color: aliceblue; text-decoration: no underline;">
+      Coba Lagi
+    </a>
+  </button>
+</div>
+</body>
+</html>

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Sistem Rekomendasi Objek Wisata Kalimantan Barat</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+  <!-- https://github.com/michalsnik/aos -->
+  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+  <!-- Custom CSS -->
+  <link rel="icon" href="static/icon.png">
+  <link rel="stylesheet" href="{{url_for('static', filename = 'main.css')}}" type="text/css">
+
+  <style>
+  body {
+    background-image: url("/static/background1.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+  }
+
+  body {
+  font-family: Raleway;
+  background-color: #202125;
+
+  animation: fadeInAnimation ease 5s;
+            animation-iteration-count: 1;
+            animation-fill-mode: forwards;
+}
+@keyframes fadeInAnimation {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+      
+
+  .layout{
+    margin-top: 4vmax;
+  }
+ .footer{
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: red;
+  color: white;
+  text-align: center;
+ }
+
+ h4{
+  counter-increment: heading;
+  text-align: left;
+ }
+ h4::before{
+  content: 'Chapter ' counter(heading) ': ';
+ }
+
+ @media (max-width: 700px) {
+  #logo{
+    width: 90px ;
+    height: 45px;
+  }
+  .layout{
+    font-size: 50%;
+  }
+  h2{
+    font-size: 100%;
+  }
+  h5{
+    font-size: 100%;
+  }
+  h4{
+    font-size: 80%;
+  }
+
+}
+
+  </style>
+</head>
+
+<section class="top-nav" style="position: relative;">
+  <div style="padding-left: 2%;">   
+  <img id="logo" src="static/logo.png" alt="logo" width="140" height="70" > 
+  </div>
+  <input id="menu-toggle" type="checkbox" />
+  <label class='menu-button-container' for="menu-toggle">
+  <div class='menu-button'></div>
+</label>
+  <ul class="menu">
+    <li><a class="nav-link" href="{{ url_for('main') }}" style="justify-content: center; text-align: center;"> Cari Objek Wisata </a></li>
+    <li><a class="nav-link" href="https://github.com/Pascal030801" style="justify-content: center; text-align: center;"> Github </a></li>
+  </ul>
+</section>
+
+<!-- style="height: max-content; width:fit-content;" -->
+<body>
+  <div class="layout">
+    <center>
+      <h2 style="font-size: 200% ;  color: white;"> Hasil Pencarian Keyword :<br><br> <b>{{ keyword }}</b></h2>
+    <br>
+
+    <h2 align="center" style="margin-top:1vmax; font-size:150%; color: white;">
+      Objek Wisata Yang Relevan :
+    </h2>
+    <br>
+
+    {% for index, row in recommendations.iterrows() %}
+    <div class="card" style="color: black; width: 60%; text-align: left; padding: 10px 10px;">
+      <div class="card-header" style="font-weight: bold; color: #202125;">
+        Kabupaten : {{ row['kabupaten']}}
+      </div>
+      <div class="card-body">
+        <h5 class="card-title" style="font-weight: bolder; color: #ff475fc8;">{{ row['destinasi'] }}</h5>
+        <p class="card-text" style="text-align: justify;">&emsp;{{ row['deskripsi'] }}</p>
+      </div>
+    </div>
+    <br>
+    {% endfor %}
+
+    </center>
+      <br>
+      <br>
+      <br>
+  </div>
+    
+</body>
+</html>  
